@@ -1,2 +1,2 @@
 Worker:
-nodemon .\src\bot.js
+node bot.js
