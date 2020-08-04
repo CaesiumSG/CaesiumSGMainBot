@@ -2,6 +2,7 @@ module.exports = {
 	name: 'prune',
 	description: 'Prune up to 99 messages.',
 	execute(message, args) {
+		console.log("see this?")
 		if (message.member.roles.cache.some(role => role.name === 'owner'))
 		{
 		const amount = parseInt(args[0]) + 1;
