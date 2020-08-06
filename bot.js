@@ -925,7 +925,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    if (message.member.roles.cache.some(role => role.name === 'Mod' || role.name === 'Owner'))
+    if (!message.member.roles.cache.some(role => role.name === 'Mod' || role.name === 'Owner'))
     {
         message.channel.send('no perms haha gay');
     }
