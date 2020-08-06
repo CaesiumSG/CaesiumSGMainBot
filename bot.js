@@ -1,7 +1,7 @@
 require('dotenv').config();
 const util = require('util');
 const { Client, MessageEmbed, Permissions } = require('discord.js');
-const client = new Client();
+const client = new Discord.Client();
 const Discord = require('discord.js');
 
 const config = require('./config.json');
@@ -287,8 +287,8 @@ client.on('message', async message => { //help page needs improvement
             .addField("This is a help page", "more stuff will be comming soon!")
             .addField("Command prefix for this bot is (c!) in small caps", "for example, c!verify")
             .addField("Current Implemented commands/features", "verification feature (Automatic/Manual), Undelete feature, Starring messages board, selfrole colours, gayrate, capitalism rate(caprate), time, ping, version info, changelog, games(rockpapersizzios, random number gen 1-1mil), server info, user info, am I gay, kick, ban, prune, coinflip")
-            .addField("All commands", "c!verify c!roles=[insert role] c!gay c!caprate c!ping c!version c!changelog c!time c!amigay c!rps(rockpaperscissiozs idk how spell halp) c!sever c!user-info c!random(pick random number from 1-1 millon) c!coinflip" )
-            .addField("Mod Commands", "c!prune(remove messages without triggerring undelete feature) c!kick c!ban c!raidmode=on/off c!verifyauto=on/off ")
+            .addField("All commands", "c!verify c!roles=[insert role] c!gay c!caprate c!ping c!version c!changelog c!time c!amigay c!rps(rockpaperscissiozs idk how spell halp) c!sever c!user-info c!random(pick random number from 1-1 millon) c!coinflip" )	
+            .addField("Mod Commands", "c!prune(remove messages without triggerring undelete feature) c!kick c!ban c!raidmode=on/off c!verifyauto=on/off c!mod-everyone c!unmod-everyone c!create mod c!check-mod c!make-private c!can-kick c!create-private c!unprivate c!my-permissions c!lock-permissions c!role-premissions")
             .addField("current available lists of roles", "Green, Orange, Giveaway Pings (much more comming in next update v1.5)")
             .addField("Command for adding roles", "c!roles=green/orange/gping")
             .addField("Command for removing roles", "c!roles=remove green/orange/gping")
@@ -345,7 +345,7 @@ client.on('message', message => { //version info
             color: 0x2ed32e,
             fields: [{
                 name: "version",
-                value: "Version: v1.4"
+                value: "Version: v1.6"
                 
                 
                 
@@ -364,8 +364,8 @@ client.on('message', message => { //changelog
         message.channel.send({embed: {
             color: 0x2ed32e,
             fields: [{
-                name: "version 1.4 changelog",
-                value: "Big update! Mod Commands added (kick, ban, prune), 3 games added(coinflip, random int 1-1000000, rock paper sizzios). Added more useless features such as server info, user info, and am I gay?. Bug fixes."
+                name: "version 1.6 changelog",
+                value: " new mod commands c!mod-everyone c!unmod-everyone c!create mod c!check-mod c!make-private c!can-kick c!create-private c!unprivate c!my-permissions c!lock-permissions c!role-premissions. some bugfixes."
                 
                 
           }
@@ -741,11 +741,7 @@ function generateDiscordEmbed(poll, type) {
 	return embed;
 }
 
-clients.on('ready', () => {
-	console.log('I am ready!');
-});
-
-clients.on('message', message => {
+client.on('message', message => {
 	if(message.content) {
 		// Array with: anything in brackets, anything in quotes, anything separated by spaces (in that hierarchy)
 		var args = message.content.trim().match(/(?:[^\s"\[]+|\[[^\[]*\]|"[^"]*")+/g);
@@ -929,30 +925,30 @@ clients.on('message', message => {
 
 
 client.on('message', message => {
-	if (message.author.bot || !message.content.startsWith('!')) return;
+	if (message.author.bot || !message.content.startsWith('c!')) return;
 	if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
 
 	const botPerms = ['MANAGE_MESSAGES', 'KICK_MEMBERS', 'MANAGE_ROLES', 'MANAGE_CHANNELS'];
 
 	if (!message.guild.me.permissions.has(botPerms)) {
-		return message.reply(`I need the permissions ${botPerms.join(', ')} for this demonstration to work properly`);
+		return message.reply(`I need the permissions ${botPerms.join(', ')} for this function to work properly`);
 	}
 
-	if (message.content === '!mod-everyone') {
+	if (message.content === 'c!mod-everyone') {
 		const everyonePerms = new Permissions(message.guild.defaultRole.permissions);
 		const newPerms = everyonePerms.add(['MANAGE_MESSAGES', 'KICK_MEMBERS']);
 
 		message.guild.defaultRole.setPermissions(newPerms.bitfield)
 			.then(() => message.channel.send('Added mod permissions to `@everyone`.'))
 			.catch(console.error);
-	} else if (message.content === '!unmod-everyone') {
+	} else if (message.content === 'c!unmod-everyone') {
 		const everyonePerms = new Permissions(message.guild.defaultRole.permissions);
 		const newPerms = everyonePerms.remove(['MANAGE_MESSAGES', 'KICK_MEMBERS']);
 
 		message.guild.defaultRole.setPermissions(newPerms.bitfield)
 			.then(() => message.channel.send('Removed mod permissions from `@everyone`.'))
 			.catch(console.error);
-	} else if (message.content === '!create-mod') {
+	} else if (message.content === 'c!create-mod') {
 		if (message.guild.roles.cache.some(role => role.name === 'Mod')) {
 			return message.channel.send('A role with the name "Mod" already exists on this server.');
 		}
@@ -966,7 +962,7 @@ client.on('message', message => {
 		}
 
 		message.channel.send('You don\'t have a role called Mod.');
-	} else if (message.content === '!can-kick') {
+	} else if (message.content === 'c!can-kick') {
 		if (message.member.hasPermission('KICK_MEMBERS')) {
 			return message.channel.send('You can kick members.');
 		}
@@ -993,7 +989,7 @@ client.on('message', message => {
 		])
 			.then(() => message.channel.send(`Made channel \`${message.channel.name}\` private.`))
 			.catch(console.error);
-	} else if (message.content === '!create-private') {
+	} else if (message.content === 'c!create-private') {
 		message.guild.channels.create('private', {
 			type: 'text', permissionOverwrites: [
 				{
@@ -1012,7 +1008,7 @@ client.on('message', message => {
 		})
 			.then(() => message.channel.send('Created a private channel.'))
 			.catch(console.error);
-	} else if (message.content === '!unprivate') {
+	} else if (message.content === 'c!unprivate') {
 		if (!message.channel.permissionsFor(client.user).has('MANAGE_ROLES')) {
 			return message.channel.send('Please make sure i have the permissions MANAGE_ROLES in this channel and retry.');
 		}
@@ -1020,11 +1016,11 @@ client.on('message', message => {
 		message.channel.permissionOverwrites.get(message.guild.id).delete()
 			.then(() => message.channel.send(`Made channel ${message.channel.name} public.`))
 			.catch(console.error);
-	} else if (message.content === '!my-permissions') {
+	} else if (message.content === 'c!my-permissions') {
 		const finalPermissions = message.channel.permissionsFor(message.member);
 
 		message.channel.send(util.inspect(finalPermissions.serialize()), { code: 'js' });
-	} else if (message.content === '!lock-permissions') {
+	} else if (message.content === 'c!lock-permissions') {
 		if (!message.channel.parent) {
 			return message.channel.send('This channel is not placed under a category.');
 		}
@@ -1038,7 +1034,7 @@ client.on('message', message => {
 				message.channel.send(`Synchronized overwrites of \`${message.channel.name}\` with \`${message.channel.parent.name}\`.`);
 			})
 			.catch(console.error);
-	} else if (message.content === '!role-permissions') {
+	} else if (message.content === 'c!role-permissions') {
 		const roleFinalPermissions = message.channel.permissionsFor(message.member.roles.highest);
 
 		message.channel.send(util.inspect(roleFinalPermissions.serialize()), { code: 'js' });
