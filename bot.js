@@ -926,7 +926,8 @@ client.on('message', message => {
 
 client.on('message', message => {
 	if (message.author.bot || !message.content.startsWith('c!')) return;
-	if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
+    if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
+    if (message.member.roles.cache.some(role => role.name === 'Mod' || role.name === 'Owner')) return;
 
 	const botPerms = ['MANAGE_MESSAGES', 'KICK_MEMBERS', 'MANAGE_ROLES', 'MANAGE_CHANNELS'];
 
@@ -956,8 +957,8 @@ client.on('message', message => {
 		message.guild.roles.create({ data: { name: 'Mod', permissions: ['MANAGE_MESSAGES', 'KICK_MEMBERS'] } })
 			.then(() => message.channel.send('Created Mod role.'))
 			.catch(console.error);
-	} else if (message.content === '!check-mod') {
-		if (message.member.roles.cache.some(role => role.name === 'Mod')) {
+	} else if (message.content === 'c!check-mod') {
+		if (message.member.roles.cache.some(role => role.name === 'Mod' || role.name === 'Owner')) {
 			return message.channel.send('You do have a role called Mod.');
 		}
 
@@ -988,10 +989,12 @@ client.on('message', message => {
 			},
 		])
 			.then(() => message.channel.send(`Made channel \`${message.channel.name}\` private.`))
-			.catch(console.error);
+            .catch(console.error);
+    
 	} else if (message.content === 'c!create-private') {
-		message.guild.channels.create('private', {
-			type: 'text', permissionOverwrites: [
+        
+		    message.guild.channels.create('private', {
+			    type: 'text', permissionOverwrites: [
 				{
 					id: message.guild.id,
 					deny: ['VIEW_CHANNEL'],
@@ -1003,8 +1006,10 @@ client.on('message', message => {
 				{
 					id: client.user.id,
 					allow: ['VIEW_CHANNEL'],
-				},
-			],
+                },
+            
+
+            ],
 		})
 			.then(() => message.channel.send('Created a private channel.'))
 			.catch(console.error);
