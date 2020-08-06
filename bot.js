@@ -221,7 +221,7 @@ client.on('messageDelete', message => { //undelete
                 .setDescription(message.content)
                 .setTimestamp();
             message.channel.send(embed);
-            partichannel.send(embed);
+            
 
         }
     }
