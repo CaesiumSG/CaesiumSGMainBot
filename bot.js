@@ -19,6 +19,8 @@ for (const file of commandFiles) {
 
 require('events').EventEmitter.defaultMaxListeners = 60;
 
+
+
 client.login(process.env.token);
 console.log("bot client has logged in")
 
