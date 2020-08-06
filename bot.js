@@ -25,7 +25,7 @@ client.login(process.env.token);
 console.log("bot client has logged in")
 
 client.on("ready", async ()  => {
-    console.log(normal(" [ login ]"), `${client.user.tag} is ready`)
+    
 	client.user.setStatus("dnd")
 	const channel = client.channels.cache.get('706152605574889584');
 	const exampleEmbed = new Discord.MessageEmbed()
