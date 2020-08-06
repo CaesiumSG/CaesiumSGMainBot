@@ -3,7 +3,7 @@ const util = require('util');
 const { Client, MessageEmbed, Permissions } = require('discord.js');
 const client = new Client();
 const Discord = require('discord.js');
-let db = JSON.parse(fs.readFileSync("./database.json", "utf8"));
+
 const config = require('./config.json');
 const guilds = require('./guilds.json');
 const fs = require('fs');
@@ -1056,6 +1056,8 @@ client.on('message', message => {
 		message.channel.send(util.inspect(roleFinalPermissions.serialize()), { code: 'js' });
 	}
 });
+
+let db = JSON.parse(fs.readFileSync("./database.json", "utf8"));
 
 client.on("message", message => {
     if (message.author.bot) return; // ignore bots
