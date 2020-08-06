@@ -28,7 +28,7 @@ let days = Math.floor(client.uptime / 86400000);
             .addField("Discord.js version", `v${version}`, true)
             .addField("Node version ", `${process.version}`, true)
             .addField("platform ", `\`\`${os.platform()}\`\``, true)
-            .setFooter("astral")
+            .setFooter("CaesiumSGBot")
 
         message.channel.send(embedStats)
     }
