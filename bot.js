@@ -25,10 +25,10 @@ client.login(process.env.token);
 console.log("bot client has logged in")
 
 client.on('ready', () => {
-    bot.user.setStatus('available')
-    bot.user.setPresence({
+    client.user.setStatus('busy')
+    client.user.setPresence({
         game: {
-            name: 'with depression',
+            name: 'ur mom',
             type: "STREAMING",
             url: "https://www.twitch.tv/DA_TRO11"
         }
