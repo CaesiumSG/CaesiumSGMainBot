@@ -293,7 +293,7 @@ client.on('message', async message => { //help page needs improvement
             .setThumbnail("https://cdn.discordapp.com/avatars/573028065475690497/c1c6306f3ebb7999c0c292e292503c82.png?size=256")
             .setURL("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
             .setAuthor('Liquid Caesium', "https://media.discordapp.net/attachments/683245625520685069/738963853949272156/737745506649899119.png")
-            .setImage("https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFlag_of_Singapore&psig=AOvVaw3qgWMQb9lI9bzgmUskcVbj&ust=1596439549782000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNja9PP---oCFQAAAAAdAAAAABAD")
+            .setImage("https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg")
             .addField("This is a help page", "more stuff will be comming soon!")
             .addField("Command prefix for this bot is (c!) in small caps", "for example, c!verify")
             .addField("Current Implemented commands/features", "verification feature (Automatic/Manual), Undelete feature, Starring messages board, selfrole colours, gayrate, capitalism rate(caprate), time, ping, version info, changelog, games(rockpapersizzios, random number gen 1-1mil), server info, user info, am I gay, kick, ban, prune, coinflip")
