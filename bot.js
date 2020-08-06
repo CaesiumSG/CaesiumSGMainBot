@@ -288,9 +288,9 @@ client.on('message', async message => { //help page needs improvement
             .setImage("https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg")
             .addField("This is a help page", "more stuff will be comming soon!")
             .addField("Command prefix for this bot is (c!) in small caps", "for example, c!verify")
-            .addField("Current Implemented commands/features", "verification feature (Automatic/Manual), Undelete feature, Starring messages board, selfrole colours, gayrate, capitalism rate(caprate), time, ping, version info, changelog, games(rockpapersizzios, random number gen 1-1mil), server info, user info, am I gay, kick, ban, prune, coinflip")
-            .addField("All commands", "c!verify c!roles=[insert role] c!gay c!caprate c!ping c!version c!changelog c!time c!amigay c!rps(rockpaperscissiozs idk how spell halp) c!sever c!user-info c!random(pick random number from 1-1 millon) c!coinflip" )	
-            .addField("Mod Commands", "c!prune(remove messages without triggerring undelete feature) c!kick c!ban c!raidmode=on/off c!verifyauto=on/off c!mod-everyone c!unmod-everyone c!create mod c!check-mod c!make-private c!can-kick c!create-private c!unprivate c!my-permissions c!lock-permissions c!role-premissions")
+            .addField("Current Implemented commands/features", "verification feature (Automatic/Manual), Undelete feature, Starring messages board, selfrole colours, gayrate, capitalism rate(caprate), time, ping, version info, changelog, games(rockpapersizzios, random number gen 1-1mil), server info, user info, am I gay, fkick, coinflip")
+            .addField("All commands", "c!verify c!roles=[insert role] c!gay c!caprate c!ping c!version c!changelog c!time c!amigay c!rps(rockpaperscissiozs idk how spell halp) c!server c!user-info c!random(pick random number from 1-1 millon) c!coinflip c!avatar c!clap c!gdcomment c!google c!hug c!botinfo c!invite c!qr c!react c!rip c!source c!support c!youtube")	
+            .addField("Mod Commands", "c!deletemsg(remove messages without triggerring undelete feature) c!raidmode=on/off c!verifyauto=on/off c!mod-everyone c!unmod-everyone c!create mod c!check-mod c!make-private c!can-kick c!create-private c!unprivate c!my-permissions c!lock-permissions c!role-premissions c!ban c!kick c!lock c!unlock c!shutdown c!nick c!setup")
             .addField("current available lists of roles", "Green, Orange, Giveaway Pings (much more comming in next update v1.5)")
             .addField("Command for adding roles", "c!roles=green/orange/gping")
             .addField("Command for removing roles", "c!roles=remove green/orange/gping")
@@ -347,7 +347,7 @@ client.on('message', message => { //version info
             color: 0x2ed32e,
             fields: [{
                 name: "version",
-                value: "Version: v1.6"
+                value: "Version: v1.7.2"
                 
                 
                 
@@ -366,8 +366,8 @@ client.on('message', message => { //changelog
         message.channel.send({embed: {
             color: 0x2ed32e,
             fields: [{
-                name: "version 1.6 changelog",
-                value: " new mod commands c!mod-everyone c!unmod-everyone c!create mod c!check-mod c!make-private c!can-kick c!create-private c!unprivate c!my-permissions c!lock-permissions c!role-premissions. new poll command. some bugfixes."
+                name: "version 1.7.2 changelog",
+                value: "Mod Commands Reenabled(ban/kick), added avatar, clap, fakekick, geometry dash comment(honestly idk why LOL), google, hug, bot info, invite, lock, nick, shutdown(doesnt work for now), qr code gen, react, rip, source(hosted on github), support(my bot server), unlock, youtube(prob missed out alot heh). Bug Fixes."
                 
                 
           }
