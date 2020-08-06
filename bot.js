@@ -927,7 +927,7 @@ client.on('message', message => {
 client.on('message', message => {
 	if (message.author.bot || !message.content.startsWith('c!')) return;
     if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
-    if (message.member.roles.cache.some(role => role.name === 'Mod' || role.name === 'Owner')) return;
+    if (!message.member.roles.cache.some(role => role.name === 'Mod' || role.name === 'Owner')) return;
 
 	const botPerms = ['MANAGE_MESSAGES', 'KICK_MEMBERS', 'MANAGE_ROLES', 'MANAGE_CHANNELS'];
 
