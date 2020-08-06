@@ -17,7 +17,7 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
-require('events').EventEmitter.defaultMaxListeners = 60;
+require('events').EventEmitter.defaultMaxListeners = 180;
 
 
 
