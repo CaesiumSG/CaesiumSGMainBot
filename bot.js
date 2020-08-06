@@ -24,33 +24,8 @@ require('events').EventEmitter.defaultMaxListeners = 60;
 client.login(process.env.token);
 console.log("bot client has logged in")
 
-client.on("ready", async ()  => {
-    
-	client.user.setStatus("dnd")
-	const channel = client.channels.cache.get('706152605574889584');
-	const exampleEmbed = new Discord.MessageEmbed()
-    .setColor('#0099ff')
-  .setAuthor('CaesiumSGBot status', 'https://media.discordapp.net/attachments/683245625520685069/738963853949272156/737745506649899119.png')
-  .setDescription('CaesiumSGBot online now smh!')
-.setTimestamp()
-.setFooter('logs plugin', 'https://media.discordapp.net/attachments/683245625520685069/738963853949272156/737745506649899119.png')
-channel.send(exampleEmbed);
-    setTimeout(() => {
-        setInterval(function() {
-			let Statuses = [
-			  `${prefix}help for help !`,
-			`${client.users.cache.size} users | ${client.guilds.cache.size} servers`,
-			"now on top.gg my arse !"
-			]
-			let status = Statuses[Math.floor(Math.random() * Statuses.length)];
-				client.user.setActivity( status , { type : "LISTENING"})}, 7000)
-		  return
-		  //dnd = ne pas deranger
-		  //idle = inactif
-		  //online = actif
-		  //invisible = hors-ligne
-    }, 60)
-});
+
+
 
 client.on('message', message => { //modular selection
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
