@@ -935,11 +935,7 @@ client.on('message', message => {
 
 
 client.on('message', message => {
-    if (!message.member.roles.cache.some(role => role.name === 'Mod' || role.name === 'Owner'))
-    {
-        message.channel.send('no perms haha gay');
-        return;
-    }
+    if (!message.member.roles.cache.some(role => role.name === 'Mod' || role.name === 'Owner')) return;
     if (message.author.bot || !message.content.startsWith('c!')) return;
     if (!message.channel.permissionsFor(client.user).has('SEND_MESSAGES')) return;
    
