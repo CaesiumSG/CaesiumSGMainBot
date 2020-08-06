@@ -365,7 +365,7 @@ client.on('message', message => { //changelog
             color: 0x2ed32e,
             fields: [{
                 name: "version 1.6 changelog",
-                value: " new mod commands c!mod-everyone c!unmod-everyone c!create mod c!check-mod c!make-private c!can-kick c!create-private c!unprivate c!my-permissions c!lock-permissions c!role-premissions. some bugfixes."
+                value: " new mod commands c!mod-everyone c!unmod-everyone c!create mod c!check-mod c!make-private c!can-kick c!create-private c!unprivate c!my-permissions c!lock-permissions c!role-premissions. new poll command. some bugfixes."
                 
                 
           }
@@ -968,7 +968,7 @@ client.on('message', message => {
 		}
 
 		message.channel.send('You cannot kick members.');
-	} else if (message.content === '!make-private') {
+	} else if (message.content === 'c!make-private') {
 		if (!message.channel.permissionsFor(client.user).has('MANAGE_ROLES')) {
 			return message.channel.send('Please make sure I have the `MANAGE_ROLES` permissions in this channel and retry.');
 		}
