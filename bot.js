@@ -1,7 +1,7 @@
 require('dotenv').config();
 const util = require('util');
 const { Client, MessageEmbed, Permissions } = require('discord.js');
-const client = new Discord.Client();
+const client = new Client();
 const Discord = require('discord.js');
 
 const config = require('./config.json');
