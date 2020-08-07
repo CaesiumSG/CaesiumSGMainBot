@@ -11,7 +11,7 @@ client.commands = new Discord.Collection();
 const clients = new Discord.Client();
 const { join } = require("path");
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
 
 
 const commandFiles = readdirSync(join(__dirname, "commands")).filter((file) => file.endsWith(".js"));
