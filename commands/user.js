@@ -28,7 +28,7 @@ module.exports = {
 		{ name: 'name', value: `${user}`,  inline: true },
 		{ name: 'id', value: `${user.id}`,  inline: true },
 		{name: 'status', value: `${user.presence.status}`, inline: false},
-		{name: 'current activity', value: `trying to fix....`, inline: false}
+		{name: 'current activity', value: `I cant guess what ur doing smh`, inline: false}
 	)
             .setTimestamp()      
                message.channel.send(exampleEmbed2)

@@ -1,5 +1,5 @@
 module.exports = {
-     name: 'lock',
+     name: 'lock-channel',
      description: 'lock a channel',
    
      execute(message) {

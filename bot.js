@@ -288,7 +288,7 @@ client.on('message', async message => { //help page needs improvement
             .setImage("https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg")
             .addField("This is a help page", "more stuff will be comming soon!")
             .addField("Command prefix for this bot is (c!) in small caps", "for example, c!verify")
-            .addField("Current Implemented commands/features", "verification feature (Automatic/Manual), Undelete feature, Starring messages board, selfrole colours, gayrate, capitalism rate(caprate), time, ping, version info, changelog, games(rockpapersizzios, random number gen 1-1mil), server info, user info, am I gay, fkick, coinflip")
+            .addField("Current Implemented commands/features", "verification feature (Automatic/Manual), Undelete feature, Starring messages board, selfrole colours, gayrate, capitalism rate(caprate), time, ping, version info, changelog, games(rockpapersizzios, random number gen 1-1mil), server info, user info, am I gay, fkick, coinflip, google/youtube search, rip/hug(srsly im too lazy to document")
             .addField("All commands", "c!verify c!roles=[insert role] c!gay c!caprate c!ping c!version c!changelog c!time c!amigay c!rps(rockpaperscissiozs idk how spell halp) c!server c!user-info c!random(pick random number from 1-1 millon) c!coinflip c!avatar c!clap c!gdcomment c!google c!hug c!botinfo c!invite c!qr c!react c!rip c!source c!support c!youtube")	
             .addField("Mod Commands", "c!deletemsg(remove messages without triggerring undelete feature) c!raidmode=on/off c!verifyauto=on/off c!mod-everyone c!unmod-everyone c!create mod c!check-mod c!make-private c!can-kick c!create-private c!unprivate c!my-permissions c!lock-permissions c!role-premissions c!ban c!kick c!lock c!unlock c!shutdown c!nick c!setup")
             .addField("current available lists of roles", "Green, Orange, Giveaway Pings (much more comming in next update v1.5)")
@@ -1024,10 +1024,7 @@ client.on('message', message => {
 		message.channel.permissionOverwrites.get(message.guild.id).delete()
 			.then(() => message.channel.send(`Made channel ${message.channel.name} public.`))
 			.catch(console.error);
-	} else if (message.content === 'c!my-permissions') {
-		const finalPermissions = message.channel.permissionsFor(message.member);
-
-		message.channel.send(util.inspect(finalPermissions.serialize()), { code: 'js' });
+	
 	} else if (message.content === 'c!lock-permissions') {
 		if (!message.channel.parent) {
 			return message.channel.send('This channel is not placed under a category.');
@@ -1042,11 +1039,75 @@ client.on('message', message => {
 				message.channel.send(`Synchronized overwrites of \`${message.channel.name}\` with \`${message.channel.parent.name}\`.`);
 			})
 			.catch(console.error);
-	} else if (message.content === 'c!role-permissions') {
-		const roleFinalPermissions = message.channel.permissionsFor(message.member.roles.highest);
+	} 
+	
+});
 
+client.on('message', message => {
+	if (message.author.bot || !message.content.startsWith('c!')) return;
+	if (message.content === 'c!role-permissions') {
+		const roleFinalPermissions = message.channel.permissionsFor(message.member.roles.highest);
+		message.channel.send(util.inspect(finalPermissions.serialize()), { code: 'js' });
+	}
+
+	else if (message.content === 'c!role-permissions') {
+		const roleFinalPermissions = message.channel.permissionsFor(message.member.roles.highest);
 		message.channel.send(util.inspect(roleFinalPermissions.serialize()), { code: 'js' });
 	}
 });
 
+const cooldowns = new Discord.Collection();
 
+client.on('message', message => {
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
+
+	const args = message.content.slice(prefix.length).split(/ +/);
+	const commandName = args.shift().toLowerCase();
+
+	const command = client.commands.get(commandName)
+		|| client.commands.find(cmd => cmd.aliases && cmd.aliases.includes(commandName));
+
+	if (!command) return;
+
+	if (command.name && message.channel.type !== 'text') {
+		return
+	}
+
+	if (command.args && !args.length) {
+		let reply = `You didn't provide any arguments, ${message.author}!`;
+
+		if (command.usage) {
+			reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+		}
+
+		return message.channel.send(reply);
+	}
+
+	if (!cooldowns.has(command.name)) {
+		cooldowns.set(command.name, new Discord.Collection());
+	}
+
+	const now = Date.now();
+	const timestamps = cooldowns.get(command.name);
+	const cooldownAmount = (command.cooldown || 3) * 1000;
+
+	if (timestamps.has(message.author.id)) {
+		const expirationTime = timestamps.get(message.author.id) + cooldownAmount;
+
+		if (now < expirationTime) {
+			const timeLeft = (expirationTime - now) / 1000;
+			return message.reply(`please wait ${timeLeft.toFixed(1)} more second(s) before reusing the \`${command.name}\` command.`);
+		}
+	}
+
+	timestamps.set(message.author.id, now);
+	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
+
+	try {
+		command.execute(message, args);
+	} catch (error) {
+		console.error(error);
+		message.reply('<:error:cd> there was an error trying to execute that command!');
+		console.log(' -----------------------------')
+	}
+});
