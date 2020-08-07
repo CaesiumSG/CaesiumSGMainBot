@@ -10,16 +10,14 @@ const fs = require('fs');
 client.commands = new Discord.Collection();
 const clients = new Discord.Client();
 const { join } = require("path");
-const { readdirSync } = require("fs");
 
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
-
-
-const commandFiles = readdirSync(join(__dirname, "commands")).filter((file) => file.endsWith(".js"));
 for (const file of commandFiles) {
-  const command = require(join(__dirname, "commands", `${file}`));
-  client.commands.set(command.name, command);
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.name, command);
 }
+
 
 require('events').EventEmitter.defaultMaxListeners = 180;
 
