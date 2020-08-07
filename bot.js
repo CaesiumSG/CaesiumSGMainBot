@@ -1,6 +1,6 @@
 require('dotenv').config();
 const util = require('util');
-const { Client, MessageEmbed, Permissions } = require('discord.js');
+const { Client, MessageEmbed, Permissions, Collection } = require('discord.js');
 const client = new Client();
 const Discord = require('discord.js');
 
@@ -9,6 +9,7 @@ const guilds = require('./guilds.json');
 const fs = require('fs');
 client.commands = new Discord.Collection();
 const clients = new Discord.Client();
+const { join } = require("path");
 
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
