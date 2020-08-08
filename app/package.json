@@ -1,0 +1,21 @@
+{
+  "name": "CaesiumSGBot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BOT.JS",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^7.1.0",
+    "cpu-stat": "^2.0.1",
+    "discord-welcome": "^2.0.2",
+    "discord.js": "^12.2.0",
+    "dotenv": "^8.2.0",
+    "enmap": "^5.4.1",
+    "mongodb": "^3.6.0"
+  }
+}
