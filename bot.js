@@ -7,7 +7,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const guilds = require('./guilds.json');
 const fs = require('fs');
-client.command = new Discord.Collection();
+client.commands = new Discord.Collection();
 const clients = new Discord.Client();
 const { join } = require("path");
 
@@ -15,7 +15,7 @@ const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('
 
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
-	client.command.set(command.name, command);
+	client.commands.set(command.name, command);
 }
 
 
