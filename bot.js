@@ -1039,8 +1039,8 @@ client.on('message', message => {
 
 client.on('message', message => {
 	if (message.author.bot || !message.content.startsWith('c!')) return;
-	if (message.content === 'c!role-permissions') {
-		const roleFinalPermissions = message.channel.permissionsFor(message.member.roles.highest);
+	if (message.content === 'c!my-permissions') {
+		const finalPermissions = message.channel.permissionsFor(message.member);
 		message.channel.send(util.inspect(finalPermissions.serialize()), { code: 'js' });
 	}
 
