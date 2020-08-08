@@ -1,7 +1,7 @@
 const ms = require('ms');
 
 module.exports = {
-    name: "remind",
+    name: "remindme",
     category: "fun",
     description: "Set's a reminder.",
     run: async (client, message, args) => {

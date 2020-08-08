@@ -35,7 +35,7 @@ client.on('message', message => { //modular selection
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
 
-	if (!client.commands.has(command)) return;
+	if (!client.command.has(command)) return;
 
 	try {
 		client.command.get(command).execute(message, args);
