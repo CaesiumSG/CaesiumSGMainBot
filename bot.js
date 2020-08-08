@@ -7,7 +7,7 @@ const Discord = require('discord.js');
 const config = require('./config.json');
 const guilds = require('./guilds.json');
 const fs = require('fs');
-client.commands = new Discord.Collection();
+client.command = new Discord.Collection();
 const clients = new Discord.Client();
 const { join } = require("path");
 
