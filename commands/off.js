@@ -11,6 +11,7 @@ module.exports = {
        message.channel.send('are you sure to shutdown? say yes or no')
         const fil = m => m.content.includes('yes')
         const collector = message.channel.createMessageCollector(fil, { time: 15000 })
+        message.channel.send('capitalism overload. shutting down')
         client.destroy();
      
         collector.on('collect', m => {
