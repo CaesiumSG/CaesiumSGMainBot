@@ -4,7 +4,7 @@ const { Client, MessageEmbed, Permissions, Collection } = require('discord.js');
 
 const Discord = require('discord.js');
 
-const client = new Discord.Client();
+const client = new Client();
 
 const config = require('./config.json');
 const guilds = require('./guilds.json');
