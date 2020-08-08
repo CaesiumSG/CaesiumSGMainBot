@@ -35,10 +35,10 @@ client.on('message', message => { //modular selection
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
 	const command = args.shift().toLowerCase();
 
-	if (!client.command.has(command)) return;
+	if (!client.commands.has(command)) return;
 
 	try {
-		client.command.get(command).execute(message, args);
+		client.commands.get(command).execute(message, args);
 	} catch (error) {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
