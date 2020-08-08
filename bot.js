@@ -30,21 +30,22 @@ console.log("bot client has logged in")
 
 
 client.on('message', message => { //modular selection
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+	if(message.content.includes(config.prefix){
 
-	const args = message.content.slice(prefix.length).trim().split(/ +/);
-	const command = args.shift().toLowerCase();
-
-	if (!client.commands.has(command)) return;
-
-	try {
-		client.commands.get(command).execute(message, args);
-	} catch (error) {
-		console.error(error);
-		message.reply('there was an error trying to execute that command!');
-	}
-});
-
+		const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+		const command = args.shift().toLowerCase();
+		var params = msg.content.substring(msgcmd.length + 2);
+		
+		
+		if(command.length > 0){
+		try {
+		console.log(message.author.username + "#" + message.author.discriminator + " (" + message.author.id + ") tried to use the command " + command + " in " + message.guild.name)
+		let commandFile = require(`./commands/${command}.js`);
+		commandFile.run(client, message, args, params, config, fs);
+		} catch (err) {
+		
+		console.log(err)
+		}}}
 
 client.on('message', async message => { //verification
     
@@ -1057,4 +1058,3 @@ client.on('message', message => {
 		message.channel.send(util.inspect(roleFinalPermissions.serialize()), { code: 'js' });
 	}
 });
-
