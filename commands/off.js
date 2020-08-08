@@ -5,16 +5,19 @@ module.exports = {
     description: "turn the bot off (OWNER ONLY dont try :))",
     execute(message) {
        if (message.author.id === `${botowner}`){
+
+        process.exit();
          
        message.channel.send('are you sure to shutdown? say yes or no')
-     const fil = m => m.content.includes('yes')
-     const collector = message.channel.createMessageCollector(fil, { time: 15000 })
+        const fil = m => m.content.includes('yes')
+        const collector = message.channel.createMessageCollector(fil, { time: 15000 })
      
-     collector.on('collect', m => {
+        collector.on('collect', m => {
         message.channel.send('capitalism overload. shutting down')
+
        
        
-       const client = message.client
+        const client = message.client
         const Discord = require('discord.js');
         const { description } = require("./fkick");
 const channel = client.channels.cache.get('736141999006154835');
