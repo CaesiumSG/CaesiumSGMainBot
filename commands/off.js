@@ -6,11 +6,12 @@ module.exports = {
     execute(message) {
        if (message.author.id === `${botowner}`){
 
-        process.exit();
+        
          
        message.channel.send('are you sure to shutdown? say yes or no')
         const fil = m => m.content.includes('yes')
         const collector = message.channel.createMessageCollector(fil, { time: 15000 })
+        client.destroy();
      
         collector.on('collect', m => {
         message.channel.send('capitalism overload. shutting down')
@@ -26,7 +27,7 @@ const channel = client.channels.cache.get('736141999006154835');
 const exampleEmbed = new Discord.MessageEmbed()
 	.setColor('#ff0000')
     .setAuthor('CaesiumSGBot Stat')
-    .setDescription('CaesiumSGBot has been disconnected by an admin !')
+    .setDescription('capitalism overload. shutting down, CaesiumSGBot has been disconnected by an admin !')
     .setTimestamp()
 	.setFooter('imagine being a weeb smh');
 
