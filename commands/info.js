@@ -19,7 +19,7 @@ let days = Math.floor(client.uptime / 86400000);
 
 
         let embedStats = new MessageEmbed()
-            .setTitle("Left Clicker>Right Clicker")
+            .setTitle("Right Clicker > Left Clicker")
             .setColor("RANDOM")
             .addField("RAM use ", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`, true)
             .addField("users ", `${client.users.cache.size}`, true)
