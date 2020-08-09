@@ -14,8 +14,9 @@ const { join } = require("path");
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
 
-}
+
 require('events').EventEmitter.defaultMaxListeners = 180;
+
 client.login(process.env.token);
 console.log("bot client has logged in")
 
@@ -26,9 +27,6 @@ for (const file of commandFiles) {
 
 const cooldowns = new Discord.Collection();
 
-client.once('ready', () => {
-	console.log('Ready!');
-});
 
 client.on('message', message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
