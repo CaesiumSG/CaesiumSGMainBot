@@ -28,7 +28,7 @@ for (const file of commandFiles) {
 const cooldowns = new Discord.Collection();
 
 
-client.on('message', message => {
+client.on('message', async message => {
 	if (!message.content.startsWith(prefix) || message.author.bot) return;
 
 	const args = message.content.slice(prefix.length).trim().split(/ +/);
