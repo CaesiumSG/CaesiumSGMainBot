@@ -19,6 +19,7 @@
     "lyrics-finder": "^21.0.5",
     "mongodb": "^3.6.0",
     "ms": "^2.1.2",
-    "simple-youtube-api": "^5.2.1"
+    "simple-youtube-api": "^5.2.1",
+    "string-progressbar": "^1.0.1"
   }
 }
