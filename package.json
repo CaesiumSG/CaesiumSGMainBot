@@ -16,7 +16,9 @@
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "enmap": "^5.4.1",
+    "lyrics-finder": "^21.0.5",
     "mongodb": "^3.6.0",
-    "ms": "^2.1.2"
+    "ms": "^2.1.2",
+    "simple-youtube-api": "^5.2.1"
   }
 }
